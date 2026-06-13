@@ -1,8 +1,13 @@
 import tkinter as tk
 
+from modules.beneficiaries import BeneficiaryFrame
+
 from database import initialize_database
 from dashboard import DashboardFrame
 from modules.volunteer import VolunteerFrame
+from modules.donation import DonationFrame
+
+
 
 initialize_database()
 
@@ -111,6 +116,7 @@ volunteer_btn.pack(fill="x")
 beneficiary_btn = tk.Button(
     sidebar,
     text="Beneficiaries",
+    command=lambda: show_frame(BeneficiaryFrame),
     **btn_style
 )
 
@@ -119,6 +125,7 @@ beneficiary_btn.pack(fill="x")
 donation_btn = tk.Button(
     sidebar,
     text="Donations",
+    command=lambda: show_frame(DonationFrame),
     **btn_style
 )
 
