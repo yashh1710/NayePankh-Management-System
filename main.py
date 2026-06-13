@@ -6,6 +6,7 @@ from database import initialize_database
 from dashboard import DashboardFrame
 from modules.volunteer import VolunteerFrame
 from modules.donation import DonationFrame
+from modules.event import EventFrame
 
 
 
@@ -134,6 +135,7 @@ donation_btn.pack(fill="x")
 event_btn = tk.Button(
     sidebar,
     text="Events",
+    command=lambda: show_frame(EventFrame),
     **btn_style
 )
 
