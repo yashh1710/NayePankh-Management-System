@@ -7,6 +7,7 @@ from dashboard import DashboardFrame
 from modules.volunteer import VolunteerFrame
 from modules.donation import DonationFrame
 from modules.event import EventFrame
+from modules.report import ReportFrame
 
 
 
@@ -144,6 +145,7 @@ event_btn.pack(fill="x")
 report_btn = tk.Button(
     sidebar,
     text="Reports",
+    command=lambda: show_frame(ReportFrame),
     **btn_style
 )
 
