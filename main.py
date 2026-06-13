@@ -1,23 +1,43 @@
 import tkinter as tk
-
-from modules.beneficiaries import BeneficiaryFrame
+from tkinter import messagebox
 
 from database import initialize_database
 from dashboard import DashboardFrame
+
 from modules.volunteer import VolunteerFrame
+from modules.beneficiaries import BeneficiaryFrame
 from modules.donation import DonationFrame
 from modules.event import EventFrame
 from modules.report import ReportFrame
 
-
+# ==========================
+# INITIALIZE DATABASE
+# ==========================
 
 initialize_database()
+
+# ==========================
+# ROOT WINDOW
+# ==========================
 
 root = tk.Tk()
 
 root.title("NayePankh Foundation Management System")
 root.geometry("1300x750")
 root.configure(bg="white")
+
+# ==========================
+# ABOUT FUNCTION
+# ==========================
+
+def show_about():
+
+    messagebox.showinfo(
+        "About",
+        "NayePankh Foundation Management System\n\n"
+        "Version 1.0\n\n"
+        "Developed by Yash Salgaonkar"
+    )
 
 # ==========================
 # HEADER
@@ -63,10 +83,14 @@ content = tk.Frame(
     bg="white"
 )
 
-content.pack(side="right", fill="both", expand=True)
+content.pack(
+    side="right",
+    fill="both",
+    expand=True
+)
 
 # ==========================
-# FRAME SWITCHER
+# FRAME SWITCHING
 # ==========================
 
 current_frame = None
@@ -79,10 +103,13 @@ def show_frame(frame_class):
         current_frame.destroy()
 
     current_frame = frame_class(content)
-    current_frame.pack(fill="both", expand=True)
+    current_frame.pack(
+        fill="both",
+        expand=True
+    )
 
 # ==========================
-# SIDEBAR BUTTONS
+# BUTTON STYLE
 # ==========================
 
 btn_style = {
@@ -95,72 +122,69 @@ btn_style = {
     "pady": 12
 }
 
-dashboard_btn = tk.Button(
+# ==========================
+# SIDEBAR BUTTONS
+# ==========================
+
+tk.Button(
     sidebar,
     text="Dashboard",
     command=lambda: show_frame(DashboardFrame),
     **btn_style
-)
+).pack(fill="x")
 
-dashboard_btn.pack(fill="x")
-
-volunteer_btn = tk.Button(
+tk.Button(
     sidebar,
     text="Volunteers",
     command=lambda: show_frame(VolunteerFrame),
     **btn_style
-)
+).pack(fill="x")
 
-volunteer_btn.pack(fill="x")
-
-# Future Modules
-
-beneficiary_btn = tk.Button(
+tk.Button(
     sidebar,
     text="Beneficiaries",
     command=lambda: show_frame(BeneficiaryFrame),
     **btn_style
-)
+).pack(fill="x")
 
-beneficiary_btn.pack(fill="x")
-
-donation_btn = tk.Button(
+tk.Button(
     sidebar,
     text="Donations",
     command=lambda: show_frame(DonationFrame),
     **btn_style
-)
+).pack(fill="x")
 
-donation_btn.pack(fill="x")
-
-event_btn = tk.Button(
+tk.Button(
     sidebar,
     text="Events",
     command=lambda: show_frame(EventFrame),
     **btn_style
-)
+).pack(fill="x")
 
-event_btn.pack(fill="x")
-
-report_btn = tk.Button(
+tk.Button(
     sidebar,
     text="Reports",
     command=lambda: show_frame(ReportFrame),
     **btn_style
-)
+).pack(fill="x")
 
-report_btn.pack(fill="x")
+tk.Button(
+    sidebar,
+    text="About",
+    command=show_about,
+    **btn_style
+).pack(fill="x")
 
-exit_btn = tk.Button(
+tk.Button(
     sidebar,
     text="Exit",
     command=root.destroy,
     **btn_style
-)
+).pack(fill="x")
 
-exit_btn.pack(fill="x")
-
-# Default Page
+# ==========================
+# DEFAULT PAGE
+# ==========================
 
 show_frame(DashboardFrame)
 
